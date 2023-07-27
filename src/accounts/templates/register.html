@@ -1,0 +1,144 @@
+{% extends 'homebase.html' %}
+
+{% block title %}book-room{% endblock %}
+
+
+
+{% block content %}
+{% load static %}
+
+ <!-- Start All Pages -->
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>REGISTER</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End All Pages -->
+
+	<!-- Start Contact -->
+<!--	<div class="map-full"></div>-->
+	<div class="contact-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2>Registering New Account</h2>
+						<p>{{setting.title}}: {{setting.motto|safe}}</p>
+					</div>
+				</div>
+            </div>
+            <!--  display message on form    -->
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags}}" role="alert">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+			<div class="row">
+				<div class="col-lg-12">
+					<form class="our-team" method="post" enctype="multipart/form-data">
+						{%csrf_token%}
+						<div class="row">
+							<div class="col-md-4 mb-3">
+								<div class="form-group">
+									<input type="text" class="form-control"  name="username" placeholder="Your Username" required data-error="Please enter your username" >
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-4 mb-3">
+								<div class="form-group">
+									<input type="password" placeholder="Password"  class="form-control" name="password1" required data-error="Please enter password">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-4 mb-3">
+								<div class="form-group">
+									<input type="password" placeholder="Confirm Password"  class="form-control" name="password2" required data-error="Please confirm password">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-4 mb-3">
+								<div class="form-group">
+									<input type="text" class="form-control"  name="first_name" placeholder="Your First Name" required data-error="Please enter your First name" >
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-4 mb-3">
+								<div class="form-group">
+									<input type="text" placeholder="Your Last Name"  class="form-control" name="last_name" required data-error="Please enter your Last name">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-4 mb-3">
+								<div class="form-group">
+									<input type="email" placeholder="Your Email Address"  class="form-control" name="email" required data-error="Please enter your email">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-12">
+								<div class="submit-button text-center">
+									<button class="btn btn-common"  type="submit">Sign Up</button>
+									<div class="clearfix"></div>
+								</div>
+
+								 <div class="border-top pt-3">
+									<small class="text-muted">Already Have An Account?<a class="ml-2" href="{%url 'login'%}">Sign In</a></small>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Contact -->
+
+	<!-- Start Contact info -->
+	<div class="contact-imfo-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 arrow-right">
+					<i class="fa fa-volume-control-phone"></i>
+					<div class="overflow-hidden">
+						<h4>Phone</h4>
+						<p class="lead">
+                            {{setting.phone}}
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4 arrow-right">
+					<i class="fa fa-envelope"></i>
+					<div class="overflow-hidden">
+						<h4>Email</h4>
+						<p class="lead">
+                            {{setting.email}}
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-map-marker"></i>
+					<div class="overflow-hidden">
+						<h4>Location</h4>
+						<p class="lead">
+                            {{setting.address|safe}}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Contact info -->
+
+{% endblock %}
+{% block foot %}{% include 'footer.html' %}{% endblock %}

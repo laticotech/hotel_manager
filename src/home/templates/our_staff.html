@@ -1,0 +1,92 @@
+{% extends 'homebase.html' %}
+
+{% block title %}Staff{% endblock %}
+
+
+
+{% block content %}
+{% load static %}
+
+<!-- Start All Pages -->
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>OUR STAFF</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End All Pages -->
+
+<!-- Start Gallery -->
+	<div class="gallery-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2>STAFF GALLERY</h2>
+						<p>{{setting.motto|safe}}/p>
+					</div>
+				</div>
+			</div>
+			<div class="tz-gallery">
+				<div class="row">
+					{%for rs in staff%}
+					<div class="col-sm-12 col-md-4 col-lg-4">
+						<a class="lightbox" href="{{rs.image.url}}">
+							<img class="img-fluid" src="{{rs.image.url}}" alt="Gallery Images" style="height:350px; width: 400px">
+						</a>
+						<div class="blog-detail">
+							<center><h4>{{rs.first_name}} {{rs.surname}}</h4></center>
+							<center><h5>{{rs.designation}}</h5></center>
+						</div>
+					</div>
+					{%endfor%}
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- End Gallery -->
+
+	<!-- Start Contact info -->
+	<div class="contact-imfo-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 arrow-right">
+					<i class="fa fa-volume-control-phone"></i>
+					<div class="overflow-hidden">
+						<h4>Phone</h4>
+						<p class="lead">
+							{{setting.phone}}
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4 arrow-right">
+					<i class="fa fa-envelope"></i>
+					<div class="overflow-hidden">
+						<h4>Email</h4>
+						<p class="lead">
+							{{setting.email}}
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-map-marker"></i>
+					<div class="overflow-hidden">
+						<h4>Location</h4>
+						<p class="lead">
+							{{setting.address|safe}}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Contact info -->
+
+
+{% endblock %}
+{% block foot %}{% include 'footer.html' %}{% endblock %}

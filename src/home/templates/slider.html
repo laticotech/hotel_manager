@@ -1,0 +1,36 @@
+{%load static%}
+
+      <!-- Start slides -->
+	<div id="slides" class="cover-slides">
+		<ul class="slides-container">
+			{%for rs in gallery%}
+			<li class="text-left">
+				<img src="{{rs.image.url}}" alt="">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-11">
+							<h1 class="m-b-20"><strong>Welcome To <br> {{setting.organization}}</strong></h1>
+							<hr>
+							<h1 class="m-b-20"><strong>{{rs.title}}</strong></h1>
+
+							<p class="m-b-40">Discover our brand luxurious Hospitality.  <br>
+								<b>{{setting.title}}: {{setting.motto|safe}}.</b></p>
+						</div>
+						<div class="col-md-1">
+							<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="/our_rooms">Book A Room</a></p>
+
+							<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="/our_services">Reservation</a></p>
+
+						</div>
+					</div>
+				</div>
+			</li>
+			{%endfor%}
+
+		</ul>
+		<div class="slides-navigation">
+			<a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+			<a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+		</div>
+	</div>
+	<!-- End slides -->

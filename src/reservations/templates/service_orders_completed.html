@@ -1,0 +1,133 @@
+{% extends 'homebase.html' %}
+
+{% block title %} Completed Order {% endblock %}
+{% block keywords %}{{setting.keywords}}{% endblock %}
+{% block description %}{{setting.description}}{% endblock %}
+
+
+{% block content %}
+
+
+<!-- Start All Pages -->
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>RESERVING SERVICE</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End All Pages -->
+
+<!--  display message on form    -->
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags}}" role="alert">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+    	<!-- Start Stuff -->
+	<div class="contact-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="heading-title text-center">
+						<h2>YOUR ORDERS</h2>
+						<p>{{setting.vision|safe}}</p>
+
+						<a class="btn btn-common" href="#" data-toggle="modal"  data-target="#OrderComplete">Click To View Order Code</a>
+						<div class="modal" tabindex="-1" role="dialog" id="OrderComplete">
+						  <div class="modal-dialog" role="document">
+							<div class="modal-content">
+							  <div class="modal-header">
+								<h5 class="modal-title">Completed Order</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								  <span aria-hidden="true">&times;</span>
+								</button>
+							  </div>
+							  <div class="modal-body">
+								<h1>Dear {{user.first_name}} {{user.last_name}}</h1>
+								<h2>Your Order is Completed!</h2>
+								<h2>Amount: {{total}}</h2>
+								<h3>Your Order Code is: {{orderscode}}</h3>
+								<h3> Thank you for being our valued customer.
+									We are so grateful and hope we met your expectations.
+									Use the order code as reference when making payments.
+
+								</h3>
+							  </div>
+							  <div class="modal-footer">
+								<a href="/" type="button" class="btn btn-secondary" data-dismiss="modal">Close</a>
+								<a href="/our_services" type="button" class="btn btn-success">More Reservations?</a>
+							  </div>
+							</div>
+						  </div>
+						</div>
+					</div>
+
+				</div>
+
+
+
+				<div class="col-md-12">
+				   <!-- Modal PopUp-->
+
+				</div>
+			</div>
+
+           <hr>
+        </div>
+    </div>
+	</div>
+	<!-- End Stuff -->
+
+
+
+	<!-- Start Contact info -->
+	<div class="contact-imfo-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 arrow-right">
+					<i class="fa fa-volume-control-phone"></i>
+					<div class="overflow-hidden">
+						<h4>Phone</h4>
+						<p class="lead">
+                            {{setting.phone}}
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4 arrow-right">
+					<i class="fa fa-envelope"></i>
+					<div class="overflow-hidden">
+						<h4>Email</h4>
+						<p class="lead">
+                            {{setting.email}}
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-map-marker"></i>
+					<div class="overflow-hidden">
+						<h4>Location</h4>
+						<p class="lead">
+                            {{setting.address|safe}}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Contact info -->
+
+
+
+
+{% endblock %}
+{% block brand %}{% include 'brand.html' %}{% endblock %}
+{% block foot %}{% include 'footer.html' %}{% endblock %}
+
+
+

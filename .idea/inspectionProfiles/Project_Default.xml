@@ -1,0 +1,51 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="N812" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="false" level="WARNING" enabled_by_default="false">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="src.ebiz.urls.home" />
+          <option value="src.blogs.views.Settings" />
+          <option value="src.services.views.Settings" />
+          <option value="src.services.views.home" />
+          <option value="src.home.views.Category" />
+          <option value="src.home.views.Service" />
+          <option value="src.home.views.services" />
+          <option value="src.myaccount.views.services" />
+          <option value="src.myaccount.views.home" />
+          <option value="src.myaccount.views.Settings" />
+          <option value="src.myaccount.views.Category" />
+          <option value="src.eAbbo.urls.order" />
+          <option value="src.home.views.books" />
+          <option value="src.user.models.validators" />
+          <option value="src.books.views.home" />
+          <option value="src.home.views.reader" />
+          <option value="src.QuickAccess1.urls.user" />
+          <option value="src.QuickAccess1.urls.books" />
+          <option value="src.QuickAccess1.urls.home" />
+          <option value="src.QuickAccess1.urls.reader" />
+          <option value="src.blog.views.Settings" />
+          <option value="src.blog.views.UserProfile" />
+          <option value="src.blog.views.DailyQuote" />
+          <option value="src.blog.views.home" />
+          <option value="src.blog.views.user" />
+          <option value="src.user.views.Settings" />
+          <option value="src.blog.views.Comment" />
+          <option value="src.reader.views.DailyQuote" />
+          <option value="src.reader.views.Comment" />
+          <option value="src.reader.views.Settings" />
+          <option value="src.home.views.user" />
+          <option value="src.home.views.rooms" />
+          <option value="src.booking.models.login" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

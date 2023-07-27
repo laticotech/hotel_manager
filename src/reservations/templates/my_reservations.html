@@ -1,0 +1,136 @@
+{% extends 'homebase.html' %}
+
+{% block title %}my reservations{% endblock %}
+
+
+
+{% block content %}
+{% load static %}
+
+<!-- Start All Pages -->
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>RESERVED SERVICES</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End All Pages -->
+
+
+
+{{booking.days}}
+	<!-- Start Stuff -->
+	<div class="stuff-box">
+		<div class="container">
+            {% load myrooms_extras %}
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center inner-column">
+						<h1><span>RESERVED</span> SERVICES</h1>
+						<hr>
+						<p>{{setting.motto|safe}}</p>
+					</div>
+				</div>
+			</div>
+
+				<!--  display message on form    -->
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags}}" role="alert">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+			<div class="row">
+				<div class="col-xl-12 col-lg-112 col-12">
+					<div class="cart-page-inner">
+						<div class="table-responsive">
+							<table class="cart-table" id="cart-table" style="width: 90%">
+								<thead class="thead-dark">
+									<tr>
+										<th>Service</th>
+										<th>Reservation Date</th>
+										<th>Amount</th>
+										<th>Code</th>
+									</tr>
+
+								</thead>
+								<tbody class="align-middle">
+
+									{%for rs in ordered%}
+									<tr>
+										<td>
+											<div class="img">
+												<a href=""><img src="{{rs.services.icon.url}}" alt="Image" style="height:100px; width:100px;"></a>
+												<p><a href="/reservations/{{rs.service.id}}/{{rs.services.slug}}">{{rs.services}}</a></p>
+											</div>
+										</td>
+
+										<td><strong>{{rs.create_at}}</strong></td>
+										<td><strong>GHC {{rs.amount}}</strong></td>
+										<td><strong>{{rs.order.code}}</strong></td>
+<!--										<td> <a href="/reservations/deletefromcart/{{rs.id}}" class="btn btn-outline-danger" onclick="return confirm('Delete! Are you sure?')" >X</a></td>-->
+									</tr>
+									{%endfor%}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div><hr>
+			<div class="row">
+				<div class="col-lg-12">
+					<a class="btn btn-common" href="/profile">Back To Profile</a>
+				</div>
+
+			</div>
+
+
+		</div>
+	</div>
+	<!-- End Stuff -->
+
+
+	<!-- Start Contact info -->
+	<div class="contact-imfo-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 arrow-right">
+					<i class="fa fa-volume-control-phone"></i>
+					<div class="overflow-hidden">
+						<h4>Phone</h4>
+						<p class="lead">
+							{{setting.phone}}
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4 arrow-right">
+					<i class="fa fa-envelope"></i>
+					<div class="overflow-hidden">
+						<h4>Email</h4>
+						<p class="lead">
+							{{setting.email}}
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-map-marker"></i>
+					<div class="overflow-hidden">
+						<h4>Location</h4>
+						<p class="lead">
+							{{setting.address|safe}}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Contact info -->
+
+
+{% endblock %}
+{% block foot %}{% include 'footer.html' %}{% endblock %}

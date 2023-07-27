@@ -1,0 +1,161 @@
+{% extends 'homebase.html' %}
+
+{% block title %}profile{{setting.title}}{% endblock %}
+
+
+
+{% block content %}
+
+
+<!-- Start header -->
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>User Update</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End header -->
+
+<!-- Start Contact -->
+<!--	<div class="map-full"></div>-->
+	<div class="contact-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="heading-title text-center">
+						<h2>Update Your Profile</h2>
+						<p>{{setting.motto|safe}}</p>
+
+					</div>
+
+				</div>
+				<div class="col-lg-6">
+					<img src="{{user.userprofile.image.url}}" style="height: 80px; border-radius: 30%">
+					<p>{{user.first_name}}</p>
+				</div>
+            </div>
+
+			<div class="row">
+				<div class="col-lg-12"> <!--  display message on form    -->
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags}}" role="alert">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                    <form class="our-team"  method="post" enctype="multipart/form-data">
+                        {%csrf_token%}
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="text" class="form-control" value="{{user.username}}"  name="username" required data-error="Username" readonly>
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="email"   class="form-control" value="{{user.email}}" name="email" required data-error="Please enter your email" readonly>
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="email"   class="form-control" value="{{user.first_name}}" name="first_name" required data-error="Please enter your email" readonly>
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="email"   class="form-control" value="{{user.last_name}}" name="last_name" required data-error="Please enter your email" readonly>
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+                            <div class="col-md-12">
+								<div class="form-group">
+									<input type="text" placeholder="Your Phone number"  class="form-control" name="phone" required data-error="Please enter your phone number">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-4 ">
+							   <small>Upload User Picture</small>
+							  <input class="form-group" type="file" name="image" />
+							   <div class="help-block with-errors"></div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="text" placeholder="Your city"  class="form-control" name="city" required data-error="Please enter city name">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="text" placeholder="Your country"  class="form-control" name="country" required data-error="Please enter country name">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<textarea class="form-control" id="address" placeholder="Your Address" name="address" rows="4" data-error="Your location" required></textarea>
+									<div class="help-block with-errors"></div>
+								</div>
+								<div class="submit-button text-center">
+									<button class="btn btn-common" id="submit" type="submit">UPDATE</button>
+									<div id="msgSubmit" class="h3 text-center hidden"></div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Contact -->
+
+	<!-- Start Contact info -->
+	<div class="contact-imfo-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 arrow-right">
+					<i class="fa fa-volume-control-phone"></i>
+					<div class="overflow-hidden">
+						<h4>Phone</h4>
+						<p class="lead">
+                            {{setting.phone}}
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4 arrow-right">
+					<i class="fa fa-envelope"></i>
+					<div class="overflow-hidden">
+						<h4>Email</h4>
+						<p class="lead">
+                            {{setting.email}}
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-map-marker"></i>
+					<div class="overflow-hidden">
+						<h4>Location</h4>
+						<p class="lead">
+                            {{setting.address|safe}}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Contact info -->
+
+{% endblock %}
+
+{% block foot %}{% include 'footer.html' %}{% endblock %}
+
+
+

@@ -1,0 +1,176 @@
+{% extends 'homebase.html' %}
+
+{% block title %}booking{% endblock %}
+
+
+
+{% block content %}
+{% load static %}
+
+<!-- Start All Pages -->
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>Book This Room</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End All Pages -->
+
+	<!-- Start blog details -->
+	<div class="blog-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center inner-column">
+						<h1><span>BOOK THIS ROOM: </span> {{viewRoom.room_name}}</h1>
+						<hr>
+						<p>{{setting.motto|safe}}</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xl-10 col-lg-10 col-12">
+					<div class="blog-inner-details-page">
+						<div class="blog-inner-box">
+							<div class="side-blog-img">
+								<img class="img-fluid" src="{{viewRoom.room_image.url}}" alt="">
+
+							</div>
+							<div class="inner-blog-detail details-page">
+								<h3>{{viewRoom.room_name}}</h3>
+								<h3>GHC {{viewRoom.daily_charge}} / NIGHT</h3>
+								<ul>
+									<li><i class="zmdi zmdi-account"></i>Capacity : {{viewRoom.capacity}}<span> Person(s)</span></li><hr>
+									<li>{{viewRoom.descriptions|safe}}</li>
+								</ul><hr>
+							</div>
+						</div>
+
+						<!--  display message on form    -->
+						{% if messages %}
+							{% for message in messages %}
+								<div class="alert alert-{{ message.tags}}" role="alert">
+									{{message}}
+								</div>
+							{% endfor %}
+						{% endif %}
+
+
+						<div class="blog-inner-box">
+							<div class="heading-title text-center">
+								<h2>Leave your details to complete booking this room</h2>
+
+							</div>
+
+							<div class="comment-respond-form">
+								<form class="our-team"  action="/rooms/addtoroomcart/{{viewRoom.id}}" method="post">
+										{%csrf_token%}
+										<div class="row">
+											<div class="col-md-6 mb-3">
+												<H3 >Children</H3>
+												<input class="form-control input" name="children" type="number" value="1" min="0" >
+											</div>
+											<div class="col-md-6 mb-3">
+												<H3 >Adults</H3>
+												<input class="form-control input" name="adult" type="number" value="1" min="0" >
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6 mb-3">
+													<label>Check In Date & Time</label>
+													<input class="form-control" type="date" name="check_in"
+														   value="{{m.check_in.value}}" placeholder="Check in" data-error="Please select check in date">
+												   <div class="help-block with-errors"></div>
+											</div>
+
+											<div class="col-md-6 mb-3">
+													<label>Check Out Date & Time</label>
+													<input class="form-control" type="date" name="check_out"
+														   value="{{m.check_out.value}}" placeholder="Check out" data-error="Please select check out date">
+												   <div class="help-block with-errors"></div>
+											</div>
+										</div>
+									    <div class="submit-button text-center">
+											<div class="col-md-12 mb-3">
+												<button class="btn btn-lg btn-circle btn-outline-new-white" type="submit"><i class="fa fa-shopping-cart"> Book Now</i></button>
+											</div>
+										</div>
+
+									</form>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-2 col-lg-2 col-md-6 col-sm-8 col-12 blog-sidebar">
+					<div class="right-side-blog">
+
+						<h3>Other View of the room</h3>
+						<div class="post-box-blog">
+							<div class="recent-post-box">
+								{%for rs in others%}
+								<div class="recent-box-blog">
+									<div class="recent-img">
+										<img class="img-fluid" src="{{rs.image.url}}" alt="" style="height:100px">
+									</div>
+									<div class="recent-info">
+
+										<h4>{{rs.title}}</h4>
+									</div>
+								</div>
+								{%endfor%}
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- End details -->
+
+	<!-- Start Contact info -->
+	<div class="contact-imfo-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 arrow-right">
+					<i class="fa fa-volume-control-phone"></i>
+					<div class="overflow-hidden">
+						<h4>Phone</h4>
+						<p class="lead">
+							{{setting.phone}}
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4 arrow-right">
+					<i class="fa fa-envelope"></i>
+					<div class="overflow-hidden">
+						<h4>Email</h4>
+						<p class="lead">
+							{{setting.email}}
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-map-marker"></i>
+					<div class="overflow-hidden">
+						<h4>Location</h4>
+						<p class="lead">
+							{{setting.address|safe}}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Contact info -->
+
+
+
+{% endblock %}
+{% block foot %}{% include 'footer.html' %}{% endblock %}

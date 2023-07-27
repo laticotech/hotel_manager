@@ -1,0 +1,151 @@
+{% extends 'homebase.html' %}
+
+{% block title %}{{user.first_name}}'s Profile{% endblock %}
+
+
+
+{% block content %}
+
+<!-- Start header -->
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>User Profile</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End header -->
+
+<!-- Start Contact -->
+<!--	<div class="map-full"></div>-->
+	<div class="contact-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2>Update Your Profile</h2>
+						<p>{{setting.motto|safe}}</p>
+
+					</div>
+
+				</div>
+
+            </div>
+
+
+			{% if messages %}
+				{% for message in messages %}
+					<div class="alert alert-{{ message.tags}}" role="alert">
+						{{message}}
+					</div>
+				{% endfor %}
+			{% endif %}
+
+			<div class="row">
+				<div class="col-xl-12 col-lg-12 col-12">
+					<a href="/accounts/update" class="btn btn-common">Update Profile</a>
+					<a href="/accounts/password" class="btn btn-common">Change Password</a>
+					<a href="/my_ordered_rooms" class="btn btn-common">MY ROOM ORDERS</a>
+					<a href="/my_reservations" class="btn btn-common">MY RESERVATIONS</a>
+					<a href="/your_comments" class="btn btn-common">MAKE COMMENTS</a><hr><br>
+				</div>
+
+				<div class="col-xl-8 col-lg-8 col-12"> <!--  display message on form    -->
+
+                    <div class="cart-page-inner">
+						<div class="table ">
+							<table class="cart-table">
+
+
+									<tr>
+
+										<th class="text-left">Full name</th>
+										<td class="text-left">{{user.first_name}} {{user.last_name}}</td>
+
+									</tr>
+								    <tr>
+										  <th class="text-left">Email</th>
+										  <td class="text-left">{{user.email}}</td>
+
+									</tr>
+								    <tr>
+										  <th class="text-left">Phone</th>
+										  <td class="text-left">{{user.userprofile.phone}}</td>
+
+									</tr>
+								    <tr>
+										  <th class="text-left">City</th>
+										  <td class="text-left">{{user.userprofile.city}}</td>
+
+									</tr>
+								    <tr>
+										  <th class="text-left">Country</th>
+										  <td class="text-left">{{user.userprofile.country}}</td>
+
+									</tr>
+								    <tr>
+										  <th class="text-left">Address</th>
+										  <td class="text-left">{{user.userprofile.address|safe}}</td>
+									</tr>
+
+							</table>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col-xl-4 col-lg-4 col-md-4 col-sm-8 col-12 blog-sidebar">
+					<div class="right-side-blog">
+
+						<div class="blog-categories">
+							<img src="{{user.userprofile.image.url}}" style="height: 200px; width:200px; border-radius: 100%">
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Contact -->
+
+	<!-- Start Contact info -->
+	<div class="contact-imfo-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 arrow-right">
+					<i class="fa fa-volume-control-phone"></i>
+					<div class="overflow-hidden">
+						<h4>Phone</h4>
+						<p class="lead">
+                            {{setting.phone}}
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4 arrow-right">
+					<i class="fa fa-envelope"></i>
+					<div class="overflow-hidden">
+						<h4>Email</h4>
+						<p class="lead">
+                            {{setting.email}}
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-map-marker"></i>
+					<div class="overflow-hidden">
+						<h4>Location</h4>
+						<p class="lead">
+                            {{setting.address|safe}}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Contact info -->
+
+{% endblock %}
+
+{% block foot %}{% include 'footer.html' %}{% endblock %}

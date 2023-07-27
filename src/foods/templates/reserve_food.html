@@ -1,0 +1,191 @@
+{% extends 'homebase.html' %}
+
+{% block title %}food_reservation{% endblock %}
+
+
+
+{% block content %}
+{% load static %}
+
+ <!-- Start All Pages -->
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>RESERVATION</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End All Pages -->
+
+	<!-- Start Contact -->
+<!--	<div class="map-full"></div>-->
+	<div class="contact-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2>RESERVING FOOD/TABLE</h2>
+						<p>{{setting.title}}: {{setting.motto|safe}}</p>
+					</div>
+				</div>
+            </div>
+            <!--  display message on form    -->
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags}}" role="alert">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+			<div class="row">
+				<div class="col-lg-12">
+					{% load myfood_extras %}
+					<form class="our-team"  method="get">
+						<h3>SEARCH FOOD BELOW</h3>
+						<div class="row">
+							<div class="col-md-2 mb-3">
+
+							</div>
+							<div class="col-md-4 mb-3">
+								<select class="custom-select" name="room_name">
+									{%for rs in list %}
+									<option>{{rs.food_name}}</option>
+									{%endfor%}
+								</select>
+							</div>
+
+							<div class="col-md-6 mb-3">
+								<input class="btn btn-common" type="submit" value="Filter/Search">
+							</div>
+						</div>
+					</form>
+
+				</div>
+			</div><br><hr>
+
+
+			<div class="row">
+				<div class="col-lg-12">
+
+                    <form class="our-team"  method="post" enctype="multipart/form-data">
+                        {%csrf_token%}
+						<div class="row">
+
+
+							<div class="col-md-6 mb-3">
+
+								<select class="custom-select" name="food">
+									{%for rs in food_page_obj %}
+									<option><b>{{rs.food_name}}</b></option>
+
+									{%endfor%}
+								</select>
+							</div>
+
+							<div class="col-md-6 mb-3">
+								<select class="custom-select" name="fullname">
+									<option >{{user.first_name}} {{user.last_name}}</option>
+
+								</select>
+							</div>
+
+							<div class="col-md-6 mb-3">
+								<select class="custom-select" name="email">
+									<option >{{user.email}}</option>
+
+								</select>
+							</div>
+                            <div class="col-md-6 mb-3">
+								<div class="form-group">
+									<input type="text" placeholder="Your Phone number"  class="form-control" name="phone" required data-error="Please enter your phone number">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							 <div class="col-md-6 mb-3">
+								<div class="form-group">
+									<input type="number" placeholder="How many tables?"  class="form-control" name="number_of_tables" required data-error="Please indicate the number of tables">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+
+							 <div class="col-md-6 mb-3">
+								<div class="form-group">
+									<input type="number" placeholder="How many plates?"  class="form-control" name="number_of_plates" required data-error="Please indicate number of plates">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+
+							<div class="col-md-6 mb-3">
+
+								<select class="custom-select" name="amount">
+									{%for rs in food_page_obj %}
+									<option>{{rs.price}} </option>
+
+									{%endfor%}
+								</select>
+							</div>
+
+							<div class="col-md-6 mb-3">
+<!--									<label>Reservation Date</label>-->
+									<div class="form-group">
+									<input type="datetime-local" placeholder="Select Date"  class="form-control" name="reservation_date" required data-error="Select Start End Date and Time">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+
+							<div class="submit-button text-center col-md-12 mb-3">
+								<button class="btn btn-common" id="submit" type="submit">Reserve Now</button>
+								<div id="msgSubmit" class="h3 text-center hidden"></div>
+								<div class="clearfix"></div>
+							</div>
+
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- End Contact -->
+
+	<!-- Start Contact info -->
+	<div class="contact-imfo-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 arrow-right">
+					<i class="fa fa-volume-control-phone"></i>
+					<div class="overflow-hidden">
+						<h4>Phone</h4>
+						<p class="lead">
+                            {{setting.phone}}
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4 arrow-right">
+					<i class="fa fa-envelope"></i>
+					<div class="overflow-hidden">
+						<h4>Email</h4>
+						<p class="lead">
+                            {{setting.email}}
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-map-marker"></i>
+					<div class="overflow-hidden">
+						<h4>Location</h4>
+						<p class="lead">
+                            {{setting.address|safe}}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Contact info -->
+
+{% endblock %}
+{% block foot %}{% include 'footer.html' %}{% endblock %}

@@ -1,0 +1,137 @@
+{% extends 'homebase.html' %}
+
+{% block title %}food-details{% endblock %}
+
+
+
+{% block content %}
+{% load static %}
+
+<!-- Start All Pages -->
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>Food Details</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End All Pages -->
+
+	<!-- Start blog details -->
+	<div class="blog-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2>FOOD DETAILS</h2>
+						<p>{{setting.motto|safe}}</p>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-xl-10 col-lg-10 col-12">
+					<div class="blog-inner-details-page">
+						<div class="blog-inner-box">
+							<div class="side-blog-img">
+								<img class="img-fluid" src="{{viewFood.food_image.url}}" alt="" style="height:600px">
+
+							</div>
+							<div class="inner-blog-detail details-page">
+								<div class="row">
+									<div class="col-md-6 mb-3">
+										<h3>{{viewFood.food_name}}</h3>
+										<h3>GHC {{viewFood.price}} / PLATE </h3>
+
+										<p>{{viewFood.descriptions|safe}}</p>
+									</div>
+
+										<div class="col-md-2 mb-1">
+											<a class="btn btn-common" href="/food_list">Back To Food List</a>
+										</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xl-2 col-lg-2 col-md-6 col-sm-8 col-12 blog-sidebar">
+					<div class="right-side-blog">
+						<h3>Other Available Dish</h3>
+						<div class="blog-categories">
+							<ul>
+								{%for rs in list%}
+								<li><a href="/food_details/{{rs.id}}/{{rs.slug}}""><span>{{rs.food_name}}</span></a></li>
+
+								{%endfor%}
+							</ul>
+						</div>
+						<h3>Food List</h3>
+						<div class="post-box-blog">
+							<div class="recent-post-box">
+								{%for rs in others%}
+								<div class="recent-box-blog">
+									<div class="recent-img">
+										<img class="img-fluid" src="{{rs.image.url}}" alt="" style="height:100px">
+									</div>
+									<div class="recent-info">
+
+										<h4>{{rs.title}}</h4>
+									</div>
+								</div>
+								{%endfor%}
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- End details -->
+
+	<!-- Start Contact info -->
+	<div class="contact-imfo-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 arrow-right">
+					<i class="fa fa-volume-control-phone"></i>
+					<div class="overflow-hidden">
+						<h4>Phone</h4>
+						<p class="lead">
+							{{setting.phone}}
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4 arrow-right">
+					<i class="fa fa-envelope"></i>
+					<div class="overflow-hidden">
+						<h4>Email</h4>
+						<p class="lead">
+							{{setting.email}}
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-map-marker"></i>
+					<div class="overflow-hidden">
+						<h4>Location</h4>
+						<p class="lead">
+							{{setting.address|safe}}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Contact info -->
+
+
+
+{% endblock %}
+{% block foot %}{% include 'footer.html' %}{% endblock %}

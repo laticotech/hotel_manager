@@ -1,0 +1,161 @@
+{% extends 'homebase.html' %}
+
+{% block title %}our-dishes{% endblock %}
+
+
+
+{% block content %}
+{% load static %}
+
+<!-- Start All Pages -->
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>OUR DISHES</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End All Pages -->
+
+	<!-- Start Stuff -->
+	<div class="stuff-box">
+		<div class="container">
+            {% load myrooms_extras %}
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2>Exclusive DISHES</h2>
+						<p>{{setting.vision|safe}}</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+                {%for rs in food_page_obj %}
+                <div class="col-md-4 col-sm-6">
+                    <div class="our-team">
+                        <div class="pic">
+                            <img src="{{rs.food_image.url}}" alt="#" style="height:300px; width:350px;">
+                            <ul class="social">
+                                <li><a href="/food_details/{{rs.id}}/{{rs.slug}}" class="fa fa-eye"></a></li>
+                            </ul>
+                        </div>
+                        <div class="team-content">
+                            <h3 class="title">{{rs.food_name}}</h3>
+                            <span class="post">GHC {{rs.price}} / PLATE</span><hr>
+                            <h1 class="btn btn-common"><a href="/food_details/{{rs.id}}/{{rs.slug}}"> View</a></h1>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+
+            <div class="pagination white_fonts">
+                <span class="step-links ">
+                    {% if food_page_obj.has_previous %}
+                        <a href="{% my_url 1 'page' request.GET.urlencode %}">&laquo; First</a>
+                        <a href="{% my_url food_page_obj.previous_page_number 'page' request.GET.urlencode %}">Previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{food_page_obj.number}} of {{food_page_obj.paginator.num_pages}}
+                    </span>
+
+                    {% if food_page_obj.has_next %}
+                        <a href="{% my_url food_page_obj.next_page_number 'page' request.GET.urlencode %}"><strong>Next</strong></a>
+                        <a href="{% my_url food_page_obj.paginator.num_pages 'page' request.GET.urlencode %}">&raquo; <strong>Last</strong></a>
+                    {% endif %}
+                </span>
+            </div>
+		</div>
+	</div>
+	<!-- End Stuff -->
+
+
+		<!-- Start Customer Reviews -->
+	<div class="customer-reviews-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2>Customer Reviews</h2>
+						<p>Your comments helps us improve. Drop a comment</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 mr-auto ml-auto text-center">
+					<div id="reviews" class="carousel slide" data-ride="carousel">
+						<div class="carousel-inner mt-10">
+							{%for rs in comments%}
+								{% if rs.status == "Publish"%}
+									<div class="carousel-item text-center active">
+										<div class="img-box p-1 border rounded-circle m-auto">
+											<img class="d-block w-100 rounded-circle" src="{{rs.image.url}}" alt="">
+										</div>
+										<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">{{rs.name}}</strong></h5>
+										<h6 class="text-dark m-0">{{rs.subject}}</h6>
+										<p class="m-0 pt-3">{{rs.comments|safe}}.</p><br>
+									</div>
+								{%else%}
+									<div class="carousel-item text-center active">
+										<div class="img-box p-1 border rounded-circle m-auto">
+											<img class="d-block w-100 rounded-circle" src="{%static ''%}images/quotations-button.png" alt="">
+										</div>
+										<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Admin</strong></h5>
+										<h6 class="text-dark m-0">Share Your Comments</h6>
+										<p class="m-0 pt-3">Your comments helps us improve. Drop a comment</p><br>
+									</div>
+								{%endif%}
+							{%endfor%}
+
+						</div>
+
+
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Customer Reviews -->
+
+	<!-- Start Contact info -->
+	<div class="contact-imfo-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 arrow-right">
+					<i class="fa fa-volume-control-phone"></i>
+					<div class="overflow-hidden">
+						<h4>Phone</h4>
+						<p class="lead">
+							{{setting.phone}}
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4 arrow-right">
+					<i class="fa fa-envelope"></i>
+					<div class="overflow-hidden">
+						<h4>Email</h4>
+						<p class="lead">
+							{{setting.email}}
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-map-marker"></i>
+					<div class="overflow-hidden">
+						<h4>Location</h4>
+						<p class="lead">
+							{{setting.address|safe}}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Contact info -->
+
+
+{% endblock %}
+{% block foot %}{% include 'footer.html' %}{% endblock %}
